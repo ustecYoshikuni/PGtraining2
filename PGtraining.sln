@@ -1,0 +1,88 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29728.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{96357EA4-32C7-4D95-B0A6-8CCC2E71605E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PGtraining.SimpleRis.Modules.ModuleName.Tests", "PGtraining.SimpleRis\Tests\PGtraining.SimpleRis.Modules.ModuleName.Tests\PGtraining.SimpleRis.Modules.ModuleName.Tests.csproj", "{6DD78B87-D411-4F02-B8A2-D541C0E07C9D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{9084F118-4F34-4C8D-9745-9941EFC6070E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PGtraining.SimpleRis.Modules.ModuleName", "PGtraining.SimpleRis\Modules\PGtraining.SimpleRis.Modules.ModuleName\PGtraining.SimpleRis.Modules.ModuleName.csproj", "{3CCA19AF-0480-44D4-9746-0753161BA7FD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{29367A76-0057-459D-A76A-5A5770056686}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PGtraining.SimpleRis.Services", "PGtraining.SimpleRis\Services\PGtraining.SimpleRis.Services\PGtraining.SimpleRis.Services.csproj", "{2E747558-1CA9-44C1-8479-2BF34C9E10C1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PGtraining.SimpleRis.Services.Interfaces", "PGtraining.SimpleRis\Services\PGtraining.SimpleRis.Services.Interfaces\PGtraining.SimpleRis.Services.Interfaces.csproj", "{27280564-7E68-436D-B3FB-0DACE743154F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PGtraining.SimpleRis", "PGtraining.SimpleRis\PGtraining.SimpleRis\PGtraining.SimpleRis.csproj", "{AC20DA44-290D-442A-9A4E-AE5CD2103548}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PGtraining.SimpleRis.Core", "PGtraining.SimpleRis\PGtraining.SimpleRis.Core\PGtraining.SimpleRis.Core.csproj", "{3448C1F8-C58A-4393-B5E2-0E0CD2303DB4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PGtraining.SimpleRis.Modules.WorkList", "PGtraining.SimpleRis\Modules\PGtraining.SimpleRis.Modules.WorkList\PGtraining.SimpleRis.Modules.WorkList.csproj", "{72034B93-542E-4E34-AA7F-B01FF7B2C0CC}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Database", "Database\Database.sqlproj", "{9FFF73CD-C93E-44F7-A702-83211683E06E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PGtraining.FileImportService", "PGtraining.FileImportService\PGtraining.FileImportService.csproj", "{654516A4-30C8-41E0-B7E4-51743338527B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6DD78B87-D411-4F02-B8A2-D541C0E07C9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DD78B87-D411-4F02-B8A2-D541C0E07C9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DD78B87-D411-4F02-B8A2-D541C0E07C9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DD78B87-D411-4F02-B8A2-D541C0E07C9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CCA19AF-0480-44D4-9746-0753161BA7FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CCA19AF-0480-44D4-9746-0753161BA7FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CCA19AF-0480-44D4-9746-0753161BA7FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CCA19AF-0480-44D4-9746-0753161BA7FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E747558-1CA9-44C1-8479-2BF34C9E10C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E747558-1CA9-44C1-8479-2BF34C9E10C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E747558-1CA9-44C1-8479-2BF34C9E10C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E747558-1CA9-44C1-8479-2BF34C9E10C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27280564-7E68-436D-B3FB-0DACE743154F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27280564-7E68-436D-B3FB-0DACE743154F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27280564-7E68-436D-B3FB-0DACE743154F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27280564-7E68-436D-B3FB-0DACE743154F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC20DA44-290D-442A-9A4E-AE5CD2103548}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC20DA44-290D-442A-9A4E-AE5CD2103548}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC20DA44-290D-442A-9A4E-AE5CD2103548}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC20DA44-290D-442A-9A4E-AE5CD2103548}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3448C1F8-C58A-4393-B5E2-0E0CD2303DB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3448C1F8-C58A-4393-B5E2-0E0CD2303DB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3448C1F8-C58A-4393-B5E2-0E0CD2303DB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3448C1F8-C58A-4393-B5E2-0E0CD2303DB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72034B93-542E-4E34-AA7F-B01FF7B2C0CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72034B93-542E-4E34-AA7F-B01FF7B2C0CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72034B93-542E-4E34-AA7F-B01FF7B2C0CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72034B93-542E-4E34-AA7F-B01FF7B2C0CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FFF73CD-C93E-44F7-A702-83211683E06E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FFF73CD-C93E-44F7-A702-83211683E06E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FFF73CD-C93E-44F7-A702-83211683E06E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{9FFF73CD-C93E-44F7-A702-83211683E06E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FFF73CD-C93E-44F7-A702-83211683E06E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FFF73CD-C93E-44F7-A702-83211683E06E}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{654516A4-30C8-41E0-B7E4-51743338527B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{654516A4-30C8-41E0-B7E4-51743338527B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{654516A4-30C8-41E0-B7E4-51743338527B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{654516A4-30C8-41E0-B7E4-51743338527B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6DD78B87-D411-4F02-B8A2-D541C0E07C9D} = {96357EA4-32C7-4D95-B0A6-8CCC2E71605E}
+		{3CCA19AF-0480-44D4-9746-0753161BA7FD} = {9084F118-4F34-4C8D-9745-9941EFC6070E}
+		{2E747558-1CA9-44C1-8479-2BF34C9E10C1} = {29367A76-0057-459D-A76A-5A5770056686}
+		{27280564-7E68-436D-B3FB-0DACE743154F} = {29367A76-0057-459D-A76A-5A5770056686}
+		{72034B93-542E-4E34-AA7F-B01FF7B2C0CC} = {9084F118-4F34-4C8D-9745-9941EFC6070E}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {692D474F-B769-46FE-A19D-58BD9D52E9D3}
+	EndGlobalSection
+EndGlobal
