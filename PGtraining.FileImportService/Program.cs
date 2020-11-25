@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration.Install;
-using System.Linq;
-using System.ServiceProcess;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ServiceProcess;
 
 namespace PGtraining.FileImportService
 {
-    static class Program
+    internal static class Program
     {
         /// <summary>
         /// アプリケーションのメイン エントリ ポイントです。
         /// </summary>
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[]
@@ -44,7 +38,6 @@ namespace PGtraining.FileImportService
             //        ServiceBase.Run(ServicesToRun);
             //        break;
             //}
-
         }
     }
 }

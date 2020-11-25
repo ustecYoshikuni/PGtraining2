@@ -7,6 +7,7 @@ namespace PGtraining.SimpleRis.Modules.ModuleName.ViewModels
     public class ViewAViewModel : RegionViewModelBase
     {
         private string _message;
+
         public string Message
         {
             get { return _message; }

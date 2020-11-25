@@ -1,6 +1,6 @@
-﻿using PGtraining.SimpleRis.Modules.ModuleName.ViewModels;
+﻿using Moq;
+using PGtraining.SimpleRis.Modules.ModuleName.ViewModels;
 using PGtraining.SimpleRis.Services.Interfaces;
-using Moq;
 using Prism.Regions;
 using Xunit;
 
@@ -8,9 +8,9 @@ namespace PGtraining.SimpleRis.Modules.ModuleName.Tests.ViewModels
 {
     public class ViewAViewModelFixture
     {
-        Mock<IMessageService> _messageServiceMock;
-        Mock<IRegionManager> _regionManagerMock;
-        const string MessageServiceDefaultMessage = "Some Value";
+        private Mock<IMessageService> _messageServiceMock;
+        private Mock<IRegionManager> _regionManagerMock;
+        private const string MessageServiceDefaultMessage = "Some Value";
 
         public ViewAViewModelFixture()
         {

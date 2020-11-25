@@ -1,8 +1,4 @@
-﻿using Prism.Commands;
-using Prism.Mvvm;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Prism.Mvvm;
 
 namespace PGtraining.SimpleRis.Modules.WorkList.ViewModels
 {
@@ -10,7 +6,6 @@ namespace PGtraining.SimpleRis.Modules.WorkList.ViewModels
     {
         public WorkListViewModel()
         {
-
         }
     }
 }

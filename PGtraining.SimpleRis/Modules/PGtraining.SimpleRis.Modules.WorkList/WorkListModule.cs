@@ -1,5 +1,4 @@
 ﻿using PGtraining.SimpleRis.Core;
-using PGtraining.SimpleRis.Modules.WorkList.Views;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;

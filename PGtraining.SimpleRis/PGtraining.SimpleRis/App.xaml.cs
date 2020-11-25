@@ -1,11 +1,11 @@
-﻿using Prism.Ioc;
-using PGtraining.SimpleRis.Views;
-using System.Windows;
-using Prism.Modularity;
-using PGtraining.SimpleRis.Modules.ModuleName;
-using PGtraining.SimpleRis.Services.Interfaces;
-using PGtraining.SimpleRis.Services;
+﻿using PGtraining.SimpleRis.Modules.ModuleName;
 using PGtraining.SimpleRis.Modules.WorkList;
+using PGtraining.SimpleRis.Services;
+using PGtraining.SimpleRis.Services.Interfaces;
+using PGtraining.SimpleRis.Views;
+using Prism.Ioc;
+using Prism.Modularity;
+using System.Windows;
 
 namespace PGtraining.SimpleRis
 {

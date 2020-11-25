@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace PGtraining.FileImportService
 {
@@ -27,11 +23,7 @@ namespace PGtraining.FileImportService
 
             if (values.Length < 12)
             {
-
             }
-
-
-
 
             List<string> lists = new List<string>();
             lists.AddRange(values);

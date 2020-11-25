@@ -7,12 +7,10 @@ namespace PGtraining.SimpleRis.Core.Mvvm
     {
         protected ViewModelBase()
         {
-
         }
 
         public virtual void Destroy()
         {
-
         }
     }
 }
