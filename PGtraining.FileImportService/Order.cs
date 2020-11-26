@@ -1,12 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.IO;
 using System.Linq;
 
 namespace PGtraining.FileImportService
 {
-    public class Study
+    [Table("Orders")]
+    public class Order
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
+
         public string OrderNo { get; set; }
         public string StudyDate { get; set; }
         public string ProcessingType { get; set; }
@@ -22,7 +27,11 @@ namespace PGtraining.FileImportService
 
         private static readonly log4net.ILog _logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        public Study(string[] row)
+        public Order()
+        {
+        }
+
+        public Order(string[] row)
         {
             FileInfo info = new FileInfo(AppDomain.CurrentDomain.SetupInformation.ConfigurationFile);
             log4net.Config.XmlConfigurator.Configure(log4net.LogManager.GetRepository(), info);
@@ -54,7 +63,7 @@ namespace PGtraining.FileImportService
             }
         }
 
-        public bool StudyValidation()
+        public bool OrderValidation()
         {
             var results = new List<bool>();
 
@@ -74,6 +83,8 @@ namespace PGtraining.FileImportService
             var result = results.All(x => x = true);
             return result;
         }
+
+        #region 個々のプロパティのバリデーションチェック
 
         private bool CheckOrderNo()
         {
@@ -239,6 +250,51 @@ namespace PGtraining.FileImportService
             }
 
             return false;
+        }
+
+        #endregion 個々のプロパティのバリデーションチェック
+
+        public bool IsRegistered()
+        {
+            var result = DbLib.GetOrder(this.OrderNo);
+            return !(result is null);
+        }
+
+        public bool InsertOrder()
+        {
+            var retunText = DbLib.InsertOrder(this);
+
+            if (string.IsNullOrEmpty(retunText))
+            {
+                return true;
+            }
+            else
+            {
+                _logger.Error($"データベースinsertに失敗しました:「{this.OrderNo}」{retunText}");
+                return false;
+            }
+        }
+
+        public bool DeleteOrder()
+        {
+            var retunText = DbLib.DeleteOrder(this);
+
+            if (string.IsNullOrEmpty(retunText))
+            {
+                return true;
+            }
+            else
+            {
+                _logger.Error($"データベースdeleteに失敗しました:「{this.OrderNo}」{retunText}");
+                return false;
+            }
+        }
+
+        public bool UpdateOrder()
+        {
+            var delete = this.DeleteOrder();
+            var insert = this.InsertOrder();
+            return (delete && insert);
         }
     }
 }

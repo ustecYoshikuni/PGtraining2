@@ -44,7 +44,7 @@ namespace PGtraining.FileImportService
                         continue;
                     }
 
-                    _logger.Info($"{ line }");
+                    _logger.Info($"{row}行目読込：{ line }");
 
                     //ダブルクォーテーションがあるか確認
                     var doubleQuotesError = false;
@@ -71,14 +71,26 @@ namespace PGtraining.FileImportService
                     //検査の読込
                     _logger.Info($"{ string.Join(",", values) }");
 
-                    var study = new Study(values);
+                    var study = new Order(values);
 
-                    if (study.StudyValidation())
+                    if (study.OrderValidation())
                     {
+                        _logger.Info($"{row}行目読込完了");
                     }
                     else
                     {
+                        _logger.Error($"{row}行目読込エラー");
                         continue;
+                    }
+
+                    //登録済みなら、上書き、未登録なら追加
+                    if (study.IsRegistered())
+                    {
+                        var update = study.UpdateOrder();
+                    }
+                    else
+                    {
+                        var insert = study.InsertOrder();
                     }
                 }
             }
