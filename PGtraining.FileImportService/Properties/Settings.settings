@@ -12,7 +12,7 @@
       <Value Profile="(Default)">*.csv</Value>
     </Setting>
     <Setting Name="ProcessingInterval" Type="System.String" Scope="User">
-      <Value Profile="(Default)">3</Value>
+      <Value Profile="(Default)">10</Value>
     </Setting>
     <Setting Name="ReprocessingTimes" Type="System.String" Scope="User">
       <Value Profile="(Default)">3</Value>

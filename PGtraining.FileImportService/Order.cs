@@ -7,8 +7,44 @@ using System.Linq;
 namespace PGtraining.FileImportService
 {
     [Table("Orders")]
-    public class Order
+    public class Order : IDisposable
     {
+        #region Dispose関連処理
+
+        private IntPtr _handle;
+
+        private Stream _stream;
+
+        private bool _disposed = false;
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposed)
+            {
+                if (disposing)
+                {
+                    _stream.Dispose();
+                }
+
+                MyCloseHandle(_handle);
+                _handle = IntPtr.Zero;
+
+                _disposed = true;
+            }
+        }
+
+        protected static void MyCloseHandle(IntPtr handle)
+        {
+        }
+
+        #endregion Dispose関連処理
+
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
@@ -29,10 +65,13 @@ namespace PGtraining.FileImportService
 
         public Order()
         {
+            Dispose(false);
         }
 
         public Order(string[] row)
         {
+            Dispose(false);
+
             FileInfo info = new FileInfo(AppDomain.CurrentDomain.SetupInformation.ConfigurationFile);
             log4net.Config.XmlConfigurator.Configure(log4net.LogManager.GetRepository(), info);
 

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.ServiceProcess;
 using System.Threading;
 
@@ -10,6 +12,15 @@ namespace PGtraining.FileImportService
         private static readonly log4net.ILog _logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private Thread Worker;
         private AutoResetEvent StopRequest = new AutoResetEvent(false);
+
+        private string TargetFolderPath = "";
+        private string FileNamePattern = ".*";
+        private int ProcessingInterval = 5;
+        private int ReprocessingTimes = 0;
+        private string ErrorFolderPath = $"{System.Environment.CurrentDirectory}\\error";
+        private string SuccessFolderPath = $"{System.Environment.CurrentDirectory}\\success";
+
+        private List<string> FileNemes = new List<string>();
 
         public CsvImportService()
         {
@@ -37,13 +48,6 @@ namespace PGtraining.FileImportService
             Worker.Join();
         }
 
-        private string TargetFolderPath = "";
-        private string FileNamePattern = ".*";
-        private int ProcessingInterval = 5;
-        private int ReprocessingTimes = 0;
-        private string ErrorFolderPath = $"{System.Environment.CurrentDirectory}\\error";
-        private string SuccessFolderPath = $"{System.Environment.CurrentDirectory}\\success";
-
         private void DoWork(object arg)
         {
             this.CheckSetting();
@@ -52,20 +56,85 @@ namespace PGtraining.FileImportService
             {
                 this.CheckFolder();
 
+                foreach (var file in this.FileNemes)
+                {
+                    var import = this.ImportFile(file);
+
+                    if (import)
+                    {
+                        var move = this.MoveFile(file, this.SuccessFolderPath);
+                    }
+                    else
+                    {
+                        var move = this.MoveFile(file, this.ErrorFolderPath);
+                    }
+                }
+
                 if (StopRequest.WaitOne(ProcessingInterval * 1000)) return;
             }
         }
 
+        private bool MoveFile(string sourceFilePath, string destFolderPath)
+        {
+            try
+            {
+                var fileName = Path.GetFileName(sourceFilePath);
+                var destFilePath = $"{destFolderPath}\\{fileName}";
+
+                _logger.Info($"ファイルを{destFilePath}に移動させます。");
+
+                if (File.Exists(destFilePath))
+                {
+                    File.Delete(destFilePath);
+                }
+                File.Move(sourceFilePath, destFilePath);
+
+                _logger.Info($"ファイルを移動しました。");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _logger.Error($"ファイルの移動に失敗しました：{ex.ToString()}");
+                return false;
+            }
+        }
+
+        private bool ImportFile(string filePath)
+        {
+            var result = true;
+
+            for (var i = 0; i < this.ReprocessingTimes; i++)
+            {
+                using (var csvFile = new CsvFile())
+                {
+                    try
+                    {
+                        csvFile.Import(filePath);
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        result = false;
+                    }
+                }
+            }
+            return result;
+        }
+
+        #region 設定値のチェック
+
         private void CheckSetting()
         {
-            _logger.Info($"設定は以下のなっています。" + Environment.NewLine +
+            _logger.Info($"以下の設定になっています。" + Environment.NewLine +
+            $"******************************************************************" + Environment.NewLine +
             $"監視対象フォルダのパス：{Properties.Settings.Default.TargetFolderPath}" + Environment.NewLine +
             $"ファイル名のパターン：{Properties.Settings.Default.FileNamePattern}" + Environment.NewLine +
             $"処理間隔期間：{Properties.Settings.Default.ProcessingInterval}" + Environment.NewLine +
             $"再処理回数：{Properties.Settings.Default.ReprocessingTimes}" + Environment.NewLine +
             $"エラーフォルダへのパス：{Properties.Settings.Default.ErrorFolderPath}" + Environment.NewLine +
             $"成功フォルダへのパス：{Properties.Settings.Default.SuccessFolderPath}" + Environment.NewLine +
-            $"DB接続文字列：{Properties.Settings.Default.ConnectionString}" + Environment.NewLine
+            $"DB接続文字列：{Properties.Settings.Default.ConnectionString}" + Environment.NewLine +
+            $"******************************************************************"
            );
 
             this.CheckTargetFolderPath();
@@ -76,17 +145,19 @@ namespace PGtraining.FileImportService
             this.CheckSuccessFolderPath();
 
             _logger.Info($"以下の設定で処理します。" + Environment.NewLine +
+            $"******************************************************************" + Environment.NewLine +
             $"監視対象フォルダのパス：{this.TargetFolderPath}" + Environment.NewLine +
             $"ファイル名のパターン：{this.FileNamePattern}" + Environment.NewLine +
             $"処理間隔期間：{this.ProcessingInterval}" + Environment.NewLine +
             $"再処理回数：{this.ReprocessingTimes}" + Environment.NewLine +
             $"エラーフォルダへのパス：{this.ErrorFolderPath}" + Environment.NewLine +
             $"成功フォルダへのパス：{this.SuccessFolderPath}" + Environment.NewLine +
-            $"DB接続文字列：{Properties.Settings.Default.ConnectionString}" + Environment.NewLine
+            $"DB接続文字列：{Properties.Settings.Default.ConnectionString}" + Environment.NewLine +
+            $"******************************************************************"
            );
         }
 
-        #region 設定値のチェック
+        #region 設定の各項目のチェック
 
         private void CheckTargetFolderPath()
         {
@@ -252,15 +323,30 @@ namespace PGtraining.FileImportService
             }
         }
 
+        #endregion 設定の各項目のチェック
+
         #endregion 設定値のチェック
 
         private void CheckFolder()
         {
-            _logger.Info($"CheckFolder() Start");
+            _logger.Info($"CheckFolder() 対象フォルダ内のファイルを取得します。");
+            this.FileNemes.Clear();
 
-            var csvFile = new CsvFile();
-            //csvFile.Import(@"C:\Users\Yoshikuni\source\PGtraining\sample\20200601140000.csv");
-            _logger.Info($"CheckFolder() End");
+            try
+            {
+                this.FileNemes = Directory.GetFiles(this.TargetFolderPath, this.FileNamePattern).ToList(); ;
+                foreach (string name in this.FileNemes)
+                {
+                    Console.WriteLine(name);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.Error($"ファイル名取得に失敗しました：{ex.ToString()}");
+            }
+
+            _logger.Info($"CheckFolder() ファイル名を取得しました。【{this.FileNemes.Count()}ファイル】" + Environment.NewLine +
+                $"{string.Join(Environment.NewLine, this.FileNemes)}");
         }
     }
 }
