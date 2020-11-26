@@ -35,5 +35,77 @@ namespace PGtraining.FileImportService.Properties {
                 this["ConnectionString"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\sampleData\\0_target")]
+        public string TargetFolderPath {
+            get {
+                return ((string)(this["TargetFolderPath"]));
+            }
+            set {
+                this["TargetFolderPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("*.csv")]
+        public string FileNamePattern {
+            get {
+                return ((string)(this["FileNamePattern"]));
+            }
+            set {
+                this["FileNamePattern"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public string ProcessingInterval {
+            get {
+                return ((string)(this["ProcessingInterval"]));
+            }
+            set {
+                this["ProcessingInterval"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public string ReprocessingTimes {
+            get {
+                return ((string)(this["ReprocessingTimes"]));
+            }
+            set {
+                this["ReprocessingTimes"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\sampleData\\2_error")]
+        public string ErrorFolderPath {
+            get {
+                return ((string)(this["ErrorFolderPath"]));
+            }
+            set {
+                this["ErrorFolderPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\sampleData\\1_success")]
+        public string SuccessFolderPath {
+            get {
+                return ((string)(this["SuccessFolderPath"]));
+            }
+            set {
+                this["SuccessFolderPath"] = value;
+            }
+        }
     }
 }

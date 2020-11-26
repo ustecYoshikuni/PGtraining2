@@ -5,5 +5,23 @@
     <Setting Name="ConnectionString" Type="System.String" Scope="User">
       <Value Profile="(Default)">Data Source=DESKTOP-422HNHF\SQLEXPRESS;Initial Catalog = PGtrainingSimpleRis; User ID = sa; Password=us@dmin</Value>
     </Setting>
+    <Setting Name="TargetFolderPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\sampleData\0_target</Value>
+    </Setting>
+    <Setting Name="FileNamePattern" Type="System.String" Scope="User">
+      <Value Profile="(Default)">*.csv</Value>
+    </Setting>
+    <Setting Name="ProcessingInterval" Type="System.String" Scope="User">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
+    <Setting Name="ReprocessingTimes" Type="System.String" Scope="User">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
+    <Setting Name="ErrorFolderPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\sampleData\2_error</Value>
+    </Setting>
+    <Setting Name="SuccessFolderPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\sampleData\1_success</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
