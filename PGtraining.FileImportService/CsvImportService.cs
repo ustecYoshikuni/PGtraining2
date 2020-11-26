@@ -58,7 +58,8 @@ namespace PGtraining.FileImportService
 
         private void CheckSetting()
         {
-            _logger.Info($"監視対象フォルダのパス：{Properties.Settings.Default.TargetFolderPath}" + Environment.NewLine +
+            _logger.Info($"設定は以下のなっています。" + Environment.NewLine +
+            $"監視対象フォルダのパス：{Properties.Settings.Default.TargetFolderPath}" + Environment.NewLine +
             $"ファイル名のパターン：{Properties.Settings.Default.FileNamePattern}" + Environment.NewLine +
             $"処理間隔期間：{Properties.Settings.Default.ProcessingInterval}" + Environment.NewLine +
             $"再処理回数：{Properties.Settings.Default.ReprocessingTimes}" + Environment.NewLine +
@@ -116,7 +117,7 @@ namespace PGtraining.FileImportService
 
             if (result)
             {
-                _logger.Info($"監視対象フォルダのパス問題なし");
+                _logger.Info($"監視対象フォルダのパス【問題なし】");
             }
         }
 
@@ -135,7 +136,7 @@ namespace PGtraining.FileImportService
 
             if (result)
             {
-                _logger.Info($"ファイル名のパターン問題なし");
+                _logger.Info($"ファイル名のパターン【問題なし】");
             }
         }
 
@@ -161,7 +162,7 @@ namespace PGtraining.FileImportService
 
             if (result)
             {
-                _logger.Info($"処理間隔期間問題なし");
+                _logger.Info($"処理間隔期間【問題なし】");
             }
         }
 
@@ -187,7 +188,7 @@ namespace PGtraining.FileImportService
 
             if (result)
             {
-                _logger.Info($"再処理回数問題なし");
+                _logger.Info($"再処理回数【問題なし】");
             }
         }
 
@@ -217,7 +218,7 @@ namespace PGtraining.FileImportService
 
             if (result)
             {
-                _logger.Info($"エラーフォルダパス問題なし");
+                _logger.Info($"エラーフォルダパス【問題なし】");
             }
         }
 
@@ -247,7 +248,7 @@ namespace PGtraining.FileImportService
 
             if (result)
             {
-                _logger.Info($"成功フォルダパス問題なし");
+                _logger.Info($"成功フォルダパス【問題なし】");
             }
         }
 
