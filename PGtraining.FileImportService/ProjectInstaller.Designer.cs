@@ -40,8 +40,8 @@
             // 
             // serviceInstaller
             // 
+            this.serviceInstaller.DelayedAutoStart = true;
             this.serviceInstaller.ServiceName = "CsvImportService";
-            this.serviceInstaller.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
             // 
             // ProjectInstaller
             // 
@@ -52,8 +52,7 @@
         }
 
         #endregion
-
-        private System.ServiceProcess.ServiceProcessInstaller serviceProcessInstaller;
         public System.ServiceProcess.ServiceInstaller serviceInstaller;
+        public System.ServiceProcess.ServiceProcessInstaller serviceProcessInstaller;
     }
 }

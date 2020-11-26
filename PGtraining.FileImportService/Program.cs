@@ -1,43 +1,39 @@
-﻿using System.ServiceProcess;
+﻿using System.Configuration.Install;
+using System.ServiceProcess;
 
 namespace PGtraining.FileImportService
 {
     internal static class Program
     {
-        /// <summary>
-        /// アプリケーションのメイン エントリ ポイントです。
-        /// </summary>
         private static void Main(string[] args)
         {
-            ServiceBase[] ServicesToRun;
-            ServicesToRun = new ServiceBase[]
+            if (args.Length == 0)
             {
-                new CsvImportService()
-            };
+                ServiceBase[] ServicesToRun;
+                ServicesToRun = new ServiceBase[]
+                {
+                        new CsvImportService()
+                };
+                ServiceBase.Run(ServicesToRun);
+            }
 
-            CsvImportService myService = new CsvImportService();
-            myService.onDebug();
+            switch (args[0])
+            {
+                case "install":
+                    string[] args2 = { System.Reflection.Assembly.GetExecutingAssembly().Location };
+                    ManagedInstallerClass.InstallHelper(args2);
 
-            //switch (args[0])
-            //{
-            //    case "install":
-            //        string[] args2 = { System.Reflection.Assembly.GetExecutingAssembly().Location };
-            //        ManagedInstallerClass.InstallHelper(args2);
-            //        break;
+                    break;
 
-            //    case "uninstall":
-            //        string[] uninstallargs = {"/u", System.Reflection.Assembly.GetExecutingAssembly().Location };
-            //        ManagedInstallerClass.InstallHelper(uninstallargs);
-            //        break;
+                case "uninstall":
+                    string[] uninstallargs = { "/u", System.Reflection.Assembly.GetExecutingAssembly().Location };
+                    ManagedInstallerClass.InstallHelper(uninstallargs);
 
-            //    case "start":
-            //        ServiceBase.Run(ServicesToRun);
-            //        break;
+                    break;
 
-            //    default:
-            //        ServiceBase.Run(ServicesToRun);
-            //        break;
-            //}
+                default:
+                    break;
+            }
         }
     }
 }
