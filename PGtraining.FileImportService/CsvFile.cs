@@ -4,48 +4,9 @@ using System.Text.RegularExpressions;
 
 namespace PGtraining.FileImportService
 {
-    public class CsvFile : IDisposable
+    public class CsvFile
     {
         private static readonly log4net.ILog _logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-
-        #region Dispose関連処理
-
-        private IntPtr _handle;
-        private Stream _stream;
-        private bool _disposed = false;
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!_disposed)
-            {
-                if (disposing)
-                {
-                    _stream.Dispose();
-                }
-
-                MyCloseHandle(_handle);
-                _handle = IntPtr.Zero;
-
-                _disposed = true;
-            }
-        }
-
-        protected static void MyCloseHandle(IntPtr handle)
-        {
-        }
-
-        #endregion Dispose関連処理
-
-        public CsvFile()
-        {
-            Dispose(false);
-        }
 
         public void Import(string path)
         {
@@ -110,27 +71,27 @@ namespace PGtraining.FileImportService
                     //検査の読込
                     _logger.Info($"{ string.Join(",", values) }");
 
-                    using (var order = new Order(values))
+                    var order = new Order(values);
+                    if (order.OrderValidation())
                     {
-                        if (order.OrderValidation())
-                        {
-                            _logger.Info($"{row}行目読込完了");
-                        }
-                        else
-                        {
-                            _logger.Error($"{row}行目読込エラー");
-                            continue;
-                        }
+                        _logger.Info($"{row}行目読込完了");
+                    }
+                    else
+                    {
+                        _logger.Error($"{row}行目読込エラー");
+                        continue;
+                    }
 
-                        //登録済みなら、上書き、未登録なら追加
-                        if (order.IsRegistered())
-                        {
-                            var update = order.UpdateOrder();
-                        }
-                        else
-                        {
-                            var insert = order.InsertOrder();
-                        }
+                    //登録済みなら、上書き、未登録なら追加
+                    if (order.IsRegistered())
+                    {
+                        _logger.Info($"上書きします");
+                        var update = order.UpdateOrder();
+                    }
+                    else
+                    {
+                        _logger.Info($"登録します");
+                        var insert = order.InsertOrder();
                     }
                 }
             }

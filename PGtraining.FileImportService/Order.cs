@@ -7,44 +7,8 @@ using System.Linq;
 namespace PGtraining.FileImportService
 {
     [Table("Orders")]
-    public class Order : IDisposable
+    public class Order
     {
-        #region Dispose関連処理
-
-        private IntPtr _handle;
-
-        private Stream _stream;
-
-        private bool _disposed = false;
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!_disposed)
-            {
-                if (disposing)
-                {
-                    _stream.Dispose();
-                }
-
-                MyCloseHandle(_handle);
-                _handle = IntPtr.Zero;
-
-                _disposed = true;
-            }
-        }
-
-        protected static void MyCloseHandle(IntPtr handle)
-        {
-        }
-
-        #endregion Dispose関連処理
-
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
@@ -65,13 +29,10 @@ namespace PGtraining.FileImportService
 
         public Order()
         {
-            Dispose(false);
         }
 
         public Order(string[] row)
         {
-            Dispose(false);
-
             FileInfo info = new FileInfo(AppDomain.CurrentDomain.SetupInformation.ConfigurationFile);
             log4net.Config.XmlConfigurator.Configure(log4net.LogManager.GetRepository(), info);
 
@@ -127,7 +88,7 @@ namespace PGtraining.FileImportService
 
         private bool CheckOrderNo()
         {
-            if ((CheckString.IsAlphaNumericOnly(this.OrderNo, true, 1, 8)))
+            if ((CheckString.IsAlphaNumericOnly(this.OrderNo, 8, 8)))
             {
                 return true;
             }
@@ -153,7 +114,7 @@ namespace PGtraining.FileImportService
 
         private bool CheckProcessingType()
         {
-            if ((CheckString.IsMatch(this.ProcessingType, "[1-3]", true, 1, 1)))
+            if ((CheckString.IsMatch(this.ProcessingType, "[1-3]", 1, 1)))
             {
                 return true;
             }
@@ -166,7 +127,7 @@ namespace PGtraining.FileImportService
 
         private bool CheckInspectionTypeCode()
         {
-            if ((CheckString.IsAlphaNumericOnly(this.InspectionTypeCode, false, 1, 8)))
+            if ((CheckString.IsAlphaNumericOnly(this.InspectionTypeCode, 1, 8)))
             {
                 return true;
             }
@@ -179,7 +140,7 @@ namespace PGtraining.FileImportService
 
         private bool CheckInspectionTypeName()
         {
-            if ((CheckString.IsMatch(this.InspectionTypeName, ".*", false, 1, 32)))
+            if ((CheckString.IsMatch(this.InspectionTypeName, ".*", 1, 32)))
             {
                 return true;
             }
@@ -192,7 +153,7 @@ namespace PGtraining.FileImportService
 
         private bool CheckPatientId()
         {
-            if ((CheckString.IsAlphaNumericOnly(this.PatientId, true, 1, 10)))
+            if ((CheckString.IsAlphaNumericOnly(this.PatientId, 10, 10)))
             {
                 return true;
             }
@@ -205,7 +166,7 @@ namespace PGtraining.FileImportService
 
         private bool CheckPatientNameKanji()
         {
-            if (CheckString.IsMatch(this.PatientNameKanji, ".*", false, 1, 64))
+            if (CheckString.IsMatch(this.PatientNameKanji, ".*", 1, 64))
             {
                 return true;
             }
@@ -218,7 +179,7 @@ namespace PGtraining.FileImportService
 
         private bool CheckPatientNameKana()
         {
-            if (CheckString.IsKataKana(this.PatientNameKana, false, 1, 64))
+            if (CheckString.IsKataKana(this.PatientNameKana, 1, 64))
             {
                 return true;
             }
@@ -244,7 +205,7 @@ namespace PGtraining.FileImportService
 
         private bool CheckPatientSex()
         {
-            if ((CheckString.IsMatch(this.PatientSex, "[FMO]", true, 1, 1)))
+            if ((CheckString.IsMatch(this.PatientSex, "[FMO]", 1, 1)))
             {
                 return true;
             }
@@ -259,7 +220,7 @@ namespace PGtraining.FileImportService
         {
             foreach (var menuCode in this.MenuCodes)
             {
-                if ((CheckString.IsAlphaNumericOnly(menuCode, false, 1, 8)))
+                if ((CheckString.IsAlphaNumericOnly(menuCode, 1, 8)))
                 {
                     return true;
                 }
@@ -277,7 +238,7 @@ namespace PGtraining.FileImportService
         {
             foreach (var menuName in this.MenuNames)
             {
-                if ((CheckString.IsMatch(menuName, ".*", false, 1, 32)))
+                if ((CheckString.IsMatch(menuName, ".*", 1, 32)))
                 {
                     return true;
                 }
@@ -295,36 +256,53 @@ namespace PGtraining.FileImportService
 
         public bool IsRegistered()
         {
-            var result = DbLib.GetOrder(this.OrderNo);
-            return !(result is null);
+            _logger.Info($"データベースに登録済みか確認します「{this.OrderNo}」");
+
+            var result = false;
+            try
+            {
+                var order = DbLib.GetOrder(this.OrderNo);
+                result = (order != null);
+            }
+            catch (Exception ex)
+            {
+                _logger.Error($"{this.OrderNo}: {ex.ToString()}");
+                result = false;
+            }
+
+            _logger.Info($"データベースに登録済み？{result}");
+
+            return result;
         }
 
         public bool InsertOrder()
         {
-            var retunText = DbLib.InsertOrder(this);
+            _logger.Info($"データベースにinsertします「{this.OrderNo}」");
 
-            if (string.IsNullOrEmpty(retunText))
+            try
             {
-                return true;
+                var result = DbLib.InsertOrder(this);
+                return result;
             }
-            else
+            catch (Exception ex)
             {
-                _logger.Error($"データベースinsertに失敗しました:「{this.OrderNo}」{retunText}");
+                _logger.Error($"データベースinsertに失敗しました:「{this.OrderNo}」{ex.ToString()}");
                 return false;
             }
         }
 
         public bool DeleteOrder()
         {
-            var retunText = DbLib.DeleteOrder(this);
+            _logger.Info($"データベースからdeleteします「{this.OrderNo}」");
 
-            if (string.IsNullOrEmpty(retunText))
+            try
             {
-                return true;
+                var result = DbLib.DeleteOrder(this);
+                return result;
             }
-            else
+            catch (Exception ex)
             {
-                _logger.Error($"データベースdeleteに失敗しました:「{this.OrderNo}」{retunText}");
+                _logger.Error($"データベースdeleteに失敗しました:「{this.OrderNo}」{ex.ToString()}");
                 return false;
             }
         }
