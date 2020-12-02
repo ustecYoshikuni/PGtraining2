@@ -16,24 +16,6 @@ namespace PGtraining.FileImportService
                 };
                 ServiceBase.Run(ServicesToRun);
             }
-
-            switch (args[0])
-            {
-                case "install":
-                    string[] args2 = { System.Reflection.Assembly.GetExecutingAssembly().Location };
-                    ManagedInstallerClass.InstallHelper(args2);
-
-                    break;
-
-                case "uninstall":
-                    string[] uninstallargs = { "/u", System.Reflection.Assembly.GetExecutingAssembly().Location };
-                    ManagedInstallerClass.InstallHelper(uninstallargs);
-
-                    break;
-
-                default:
-                    break;
-            }
         }
     }
 }
