@@ -33,12 +33,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_526AEFD3433241F7AE74C9108EB1B6BD"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_74F29F514663554BC11B953101252ED3"
         "OwnerKey" = "8:_41E837234DA247F4A7F6C66EAE753ADF"
         "MsmSig" = "8:_UNDEFINED"
@@ -110,6 +104,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
         "Release"
@@ -134,6 +136,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
     }
@@ -282,26 +292,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_526AEFD3433241F7AE74C9108EB1B6BD"
-            {
-            "SourcePath" = "8:..\\..\\..\\Downloads\\CSV読込.ico"
-            "TargetName" = "8:CSV読込.ico"
-            "Tag" = "8:"
-            "Folder" = "8:_C8F54D5D54DD42D29A5995831E6F4557"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_74F29F514663554BC11B953101252ED3"
             {
             "AssemblyRegister" = "3:1"
@@ -381,6 +371,84 @@
                 {
                 }
             }
+            "{994432C3-9487-495D-8656-3E829A8DBDDE}:_C5D851E4530B416C967B4DD6F179F3EF"
+            {
+            "DefaultLocation" = "8:[CommonAppDataFolder]\\[Manufacturer]"
+            "Name" = "8:Custom Folder #1"
+            "AlwaysCreate" = "11:TRUE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Property" = "8:COMMONAPPDATA"
+                "Folders"
+                {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_C6E78600FE2C449DAA251BEB73E25130"
+                    {
+                    "Name" = "8:PGtraining"
+                    "AlwaysCreate" = "11:TRUE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_95CBCECD87AC48EE948E1C5B0C9A4BD2"
+                        "Folders"
+                        {
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_77AD9517AB6E4D8EA27DE92C01DD64BF"
+                            {
+                            "Name" = "8:FileImport"
+                            "AlwaysCreate" = "11:TRUE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_77A5A32905614B8AB561BD92F5D0F09D"
+                                "Folders"
+                                {
+                                    "{9EF0B969-E518-4E46-987F-47570745A589}:_072C3EB75B2C45B49F38F29388E1491C"
+                                    {
+                                    "Name" = "8:1_success"
+                                    "AlwaysCreate" = "11:TRUE"
+                                    "Condition" = "8:"
+                                    "Transitive" = "11:FALSE"
+                                    "Property" = "8:_2114BA3692644AF584B410DA6392780C"
+                                        "Folders"
+                                        {
+                                        }
+                                    }
+                                    "{9EF0B969-E518-4E46-987F-47570745A589}:_8BC49242C22C489ABB916F908F7D3ECC"
+                                    {
+                                    "Name" = "8:log"
+                                    "AlwaysCreate" = "11:TRUE"
+                                    "Condition" = "8:"
+                                    "Transitive" = "11:FALSE"
+                                    "Property" = "8:_C283A4A0547444DB80C4F30E3D7FAAB3"
+                                        "Folders"
+                                        {
+                                        }
+                                    }
+                                    "{9EF0B969-E518-4E46-987F-47570745A589}:_9454BD2910FB407E83665C13979A318B"
+                                    {
+                                    "Name" = "8:0_target"
+                                    "AlwaysCreate" = "11:TRUE"
+                                    "Condition" = "8:"
+                                    "Transitive" = "11:FALSE"
+                                    "Property" = "8:_B75D75C5333D477E894B336DBDC574B8"
+                                        "Folders"
+                                        {
+                                        }
+                                    }
+                                    "{9EF0B969-E518-4E46-987F-47570745A589}:_B3E35B74627649C28FFEE80984F861DB"
+                                    {
+                                    "Name" = "8:2_error"
+                                    "AlwaysCreate" = "11:TRUE"
+                                    "Condition" = "8:"
+                                    "Transitive" = "11:FALSE"
+                                    "Property" = "8:_B8BD8254AC724F51852A2D496627EC33"
+                                        "Folders"
+                                        {
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_C8F54D5D54DD42D29A5995831E6F4557"
             {
             "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
@@ -429,12 +497,12 @@
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
         "ProductVersion" = "8:1.0.0"
-        "Manufacturer" = "8:Default Company Name"
+        "Manufacturer" = "8:UsTEC"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
         "Title" = "8:PGtraining.FileImportServiceSetup32"
         "Subject" = "8:"
-        "ARPCONTACT" = "8:Default Company Name"
+        "ARPCONTACT" = "8:UsTEC"
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"
@@ -942,7 +1010,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_41E837234DA247F4A7F6C66EAE753ADF"
             {
-            "SourcePath" = "8:..\\PGtraining.FileImportService\\obj\\x64\\Debug\\PGtraining.FileImportService.exe"
+            "SourcePath" = "8:..\\PGtraining.FileImportService\\obj\\Debug\\PGtraining.FileImportService.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_C8F54D5D54DD42D29A5995831E6F4557"

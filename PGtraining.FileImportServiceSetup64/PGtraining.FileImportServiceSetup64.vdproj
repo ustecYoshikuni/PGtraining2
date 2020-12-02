@@ -33,12 +33,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_A0516A9C83144F5A881DEC8293D5DF70"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_B5C7B21F648121DD4DB259770154C5AB"
         "OwnerKey" = "8:_C32B9BB1ECA04D1893624EEC5F005465"
         "MsmSig" = "8:_UNDEFINED"
@@ -53,12 +47,6 @@
         {
         "MsmKey" = "8:_CC1D7300A26B54FCBDB365EAADB94D39"
         "OwnerKey" = "8:_C32B9BB1ECA04D1893624EEC5F005465"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_CC1D7300A26B54FCBDB365EAADB94D39"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -85,6 +73,12 @@
         "OwnerKey" = "8:_68E2AE43842C4A73097E3196E44614E8"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_CC1D7300A26B54FCBDB365EAADB94D39"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -103,6 +97,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -119,6 +129,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -266,26 +292,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A0516A9C83144F5A881DEC8293D5DF70"
-            {
-            "SourcePath" = "8:..\\..\\..\\Downloads\\CSV読込.ico"
-            "TargetName" = "8:CSV読込.ico"
-            "Tag" = "8:"
-            "Folder" = "8:_B71D63D1D9E24FB697856575DCD07963"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B5C7B21F648121DD4DB259770154C5AB"
             {
             "AssemblyRegister" = "3:1"
@@ -388,6 +394,73 @@
                 {
                 }
             }
+            "{994432C3-9487-495D-8656-3E829A8DBDDE}:_D889B7AF2F37468DB5F27DC484291ABB"
+            {
+            "DefaultLocation" = "8:[CommonAppDataFolder]\\[Manufacturer]"
+            "Name" = "8:Custom Folder #1"
+            "AlwaysCreate" = "11:FALSE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Property" = "8:COMMONAPPDATA"
+                "Folders"
+                {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_0EB60AF358664EE69EEA17633674AD0A"
+                    {
+                    "Name" = "8:PGtraining"
+                    "AlwaysCreate" = "11:TRUE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_BD4EB40FEAF54976A1C5AF5A41518028"
+                        "Folders"
+                        {
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_F015A81C060D4D18ABFA2AD49E6D365E"
+                            {
+                            "Name" = "8:FileImport"
+                            "AlwaysCreate" = "11:TRUE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_8327374A2977425E8C914970711EF872"
+                                "Folders"
+                                {
+                                    "{9EF0B969-E518-4E46-987F-47570745A589}:_96CC9B7A38DF4AA6BB8D1DC6616CC738"
+                                    {
+                                    "Name" = "8:0_target"
+                                    "AlwaysCreate" = "11:TRUE"
+                                    "Condition" = "8:"
+                                    "Transitive" = "11:FALSE"
+                                    "Property" = "8:_7CFEBE2F698E423D9FD948BCE6A30F12"
+                                        "Folders"
+                                        {
+                                        }
+                                    }
+                                    "{9EF0B969-E518-4E46-987F-47570745A589}:_C9929F48103E43E4AAA4089357A068B9"
+                                    {
+                                    "Name" = "8:2_error"
+                                    "AlwaysCreate" = "11:TRUE"
+                                    "Condition" = "8:"
+                                    "Transitive" = "11:FALSE"
+                                    "Property" = "8:_E3AEAD6F1A02481794410AFB43367B32"
+                                        "Folders"
+                                        {
+                                        }
+                                    }
+                                    "{9EF0B969-E518-4E46-987F-47570745A589}:_E39D755BEDB4485296935AA84683911C"
+                                    {
+                                    "Name" = "8:1_success"
+                                    "AlwaysCreate" = "11:TRUE"
+                                    "Condition" = "8:"
+                                    "Transitive" = "11:FALSE"
+                                    "Property" = "8:_ED47EDA322D947A3AFF60144D92B9810"
+                                        "Folders"
+                                        {
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
         "LaunchCondition"
         {
@@ -405,7 +478,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:PGtraining.FileImportServiceSetup64"
         "ProductCode" = "8:{0C0A1CD8-17B0-42D8-B9A5-920D61D8369A}"
-        "PackageCode" = "8:{9B7EA673-12AD-4A94-A9FB-3C450AFCF5E9}"
+        "PackageCode" = "8:{0098CB61-9D2A-4B47-90D4-AB18CC6DD743}"
         "UpgradeCode" = "8:{1D9E8052-2FE4-4F45-9897-82E267E8C3B3}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -413,12 +486,12 @@
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
         "ProductVersion" = "8:1.0.0"
-        "Manufacturer" = "8:Default Company Name"
+        "Manufacturer" = "8:UsTEC"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
         "Title" = "8:PGtraining.FileImportServiceSetup64"
         "Subject" = "8:"
-        "ARPCONTACT" = "8:Default Company Name"
+        "ARPCONTACT" = "8:UsTEC"
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"
@@ -536,7 +609,7 @@
             "Target" = "8:_C32B9BB1ECA04D1893624EEC5F005465"
             "Folder" = "8:_194F085D91BF4830B20BBF712B1B9B71"
             "WorkingFolder" = "8:_B71D63D1D9E24FB697856575DCD07963"
-            "Icon" = "8:_A0516A9C83144F5A881DEC8293D5DF70"
+            "Icon" = "8:"
             "Feature" = "8:"
             }
         }
@@ -968,7 +1041,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_C32B9BB1ECA04D1893624EEC5F005465"
             {
-            "SourcePath" = "8:..\\PGtraining.FileImportService\\obj\\Release\\PGtraining.FileImportService.exe"
+            "SourcePath" = "8:..\\PGtraining.FileImportService\\obj\\Debug\\PGtraining.FileImportService.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_B71D63D1D9E24FB697856575DCD07963"

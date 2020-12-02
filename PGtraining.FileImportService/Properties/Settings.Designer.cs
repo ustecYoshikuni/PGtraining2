@@ -38,7 +38,7 @@ namespace PGtraining.FileImportService.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\sampleData\\0_target")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\ProgramData\\UsTEC\\PGtraining\\FileImport\\0_target")]
         public string TargetFolderPath {
             get {
                 return ((string)(this["TargetFolderPath"]));
@@ -86,7 +86,7 @@ namespace PGtraining.FileImportService.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\sampleData\\2_error")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\ProgramData\\UsTEC\\PGtraining\\FileImport\\2_error")]
         public string ErrorFolderPath {
             get {
                 return ((string)(this["ErrorFolderPath"]));
@@ -98,7 +98,7 @@ namespace PGtraining.FileImportService.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\sampleData\\1_success")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\ProgramData\\UsTEC\\PGtraining\\FileImport\\1_success")]
         public string SuccessFolderPath {
             get {
                 return ((string)(this["SuccessFolderPath"]));
