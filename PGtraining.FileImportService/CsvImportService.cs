@@ -105,17 +105,16 @@ namespace PGtraining.FileImportService
 
             for (var i = 0; i < this.ReprocessingTimes; i++)
             {
-                using (var csvFile = new CsvFile())
+                var csvFile = new CsvFile();
+                try
                 {
-                    try
-                    {
-                        csvFile.Import(filePath);
-                        return true;
-                    }
-                    catch (Exception ex)
-                    {
-                        result = false;
-                    }
+                    csvFile.Import(filePath);
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    _logger.Error($"ファイルの読込に失敗しました：{ex.ToString()}");
+                    result = false;
                 }
             }
             return result;

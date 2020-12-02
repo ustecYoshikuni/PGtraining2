@@ -8,9 +8,9 @@ namespace PGtraining.FileImportService
 {
     public class DbLib
     {
-        public static string InsertOrder(Order order)
+        public static bool InsertOrder(Order order)
         {
-            var result = "";
+            var result = false;
 
             using (var connection = new SqlConnection())
             using (var command = new SqlCommand())
@@ -58,24 +58,26 @@ namespace PGtraining.FileImportService
                             }
 
                             tran.Commit();
+                            result = true;
                         }
                         catch
                         {
                             tran.Rollback();
+                            result = false;
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    result = ex.ToString();
+                    throw ex;
                 }
             }
             return result;
         }
 
-        public static string DeleteOrder(Order order)
+        public static bool DeleteOrder(Order order)
         {
-            var result = "";
+            var result = false;
 
             using (var connection = new SqlConnection())
             using (var command = new SqlCommand())
@@ -90,22 +92,24 @@ namespace PGtraining.FileImportService
                         try
                         {
                             connection.Execute(
-                                $"DELETE FROM Orders WHERE OrderNo=@OrderNo", new { OrderNo = order.OrderNo }, tran);
-
-                            connection.Execute(
                                 $"DELETE FROM Menu WHERE OrderNo=@OrderNo", new { OrderNo = order.OrderNo }, tran);
 
+                            connection.Execute(
+                                $"DELETE FROM Orders WHERE OrderNo=@OrderNo", new { OrderNo = order.OrderNo }, tran);
+
                             tran.Commit();
+                            result = true;
                         }
                         catch
                         {
                             tran.Rollback();
+                            result = false;
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    result = ex.ToString();
+                    throw ex;
                 }
             }
             return result;
@@ -113,7 +117,7 @@ namespace PGtraining.FileImportService
 
         public static Order GetOrder(string orderNo)
         {
-            Order result = null;
+            Order result = new Order();
 
             using (var connection = new SqlConnection())
             using (var command = new SqlCommand())
@@ -123,22 +127,23 @@ namespace PGtraining.FileImportService
                     connection.ConnectionString = Properties.Settings.Default.ConnectionString;
                     connection.Open();
 
-                    var order = connection.Query<Order>(
-                        $"SELECT * FROM Orders WHERE OrderNo=@OrderNo", new { OrderNo = orderNo }).First();
-                    var menu = connection.Query(
-                        $"SELECT * FROM Menu WHERE OrderNo=@OrderNo", new { OrderNo = orderNo }).ToList();
+                    var orders = connection.Query<Order>("SELECT * FROM Orders WHERE OrderNo=@OrderNo", new { OrderNo = orderNo });
+                    var menu = connection.Query("SELECT * FROM Menu WHERE OrderNo=@OrderNo", new { OrderNo = orderNo }).ToList();
 
-                    for (var i = 0; i < menu.Count(); i++)
+                    if (0 < orders.Count())
                     {
-                        order.MenuCodes.Add(menu[i].MenuCode);
-                        order.MenuNames.Add(menu[i].MenuName);
-                    }
+                        result = orders.First() as Order;
 
-                    result = order;
+                        for (var i = 0; i < menu.Count(); i++)
+                        {
+                            result.MenuCodes.Add(menu[i].MenuCode);
+                            result.MenuNames.Add(menu[i].MenuName);
+                        }
+                    }
                 }
                 catch (Exception ex)
                 {
-                    var text = ex.ToString();
+                    throw ex;
                 }
             }
             return result;
