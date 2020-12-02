@@ -10,6 +10,6 @@
     [PatientNameKana]  NVARCHAR (64) NOT NULL,
     [PatientBirth]     NCHAR (8)     NOT NULL,
     [PatientSex]       NCHAR (1)     NOT NULL,
-    CONSTRAINT [PK__tmp_ms_x__C3907C744516F376] PRIMARY KEY CLUSTERED ([OrderNo] ASC)
+    CONSTRAINT [PK__tmp_ms_x__C3907C744516F376] PRIMARY KEY CLUSTERED ([OrderNo] ASC) 
 );
 

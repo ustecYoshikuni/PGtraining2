@@ -3,6 +3,7 @@
     [OrderNo]  NCHAR (8)     NOT NULL,
     [MenuCode] VARCHAR (8)   NOT NULL,
     [MenuName] NVARCHAR (32) NOT NULL,
-    CONSTRAINT [PK__tmp_ms_x__3214EC0753AF0251] PRIMARY KEY CLUSTERED ([Id] ASC)
+    CONSTRAINT [PK__tmp_ms_x__3214EC0753AF0251] PRIMARY KEY CLUSTERED ([Id] ASC), 
+    CONSTRAINT [FK_Menu_ToTable] FOREIGN KEY ([OrderNo]) REFERENCES [Orders]([OrderNo]) 
 );
 
