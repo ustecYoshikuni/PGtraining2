@@ -6,6 +6,8 @@
     <AssemblyName>PGtraining.SimpleRis</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.0.78" />
+    <PackageReference Include="log4net" Version="2.0.12" />
     <PackageReference Include="Prism.DryIoc" Version="8.0.0.1909" />
   </ItemGroup>
   <ItemGroup>

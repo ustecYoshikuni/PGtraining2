@@ -1,5 +1,4 @@
-﻿using System.Configuration.Install;
-using System.ServiceProcess;
+﻿using System.ServiceProcess;
 
 namespace PGtraining.FileImportService
 {
