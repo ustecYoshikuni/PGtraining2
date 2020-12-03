@@ -108,8 +108,8 @@ namespace PGtraining.FileImportService
                 var csvFile = new CsvFile();
                 try
                 {
-                    csvFile.Import(filePath);
-                    return true;
+                    result = csvFile.Import(filePath);
+                    return result;
                 }
                 catch (Exception ex)
                 {

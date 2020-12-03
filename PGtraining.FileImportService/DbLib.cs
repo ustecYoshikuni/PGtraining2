@@ -1,5 +1,4 @@
 ﻿using Dapper;
-using Dapper.FastCrud;
 using System;
 using System.Data.SqlClient;
 using System.Linq;
@@ -24,8 +23,17 @@ namespace PGtraining.FileImportService
                     {
                         try
                         {
-                            connection.Execute(
-                                @"INSERT INTO Orders VALUES (
+                            var query = @"INSERT INTO Orders (
+                                   OrderNo
+                                  ,StudyDate
+                                  ,ProcessingType
+                                  ,InspectionTypeCode
+                                  ,InspectionTypeName
+                                  ,PatientId
+                                  ,PatientNameKanji
+                                  ,PatientNameKana
+                                  ,PatientBirth
+                                  ,PatientSex) VALUES (
                                   @OrderNo
                                   ,@StudyDate
                                   ,@ProcessingType
@@ -35,8 +43,9 @@ namespace PGtraining.FileImportService
                                   ,@PatientNameKanji
                                   ,@PatientNameKana
                                   ,@PatientBirth
-                                  ,@PatientSex)",
-                                order, tran);
+                                  ,@PatientSex)";
+
+                            var orderResult = connection.Execute(query, order, tran);
 
                             var orderNo = order.OrderNo;
 
@@ -60,10 +69,10 @@ namespace PGtraining.FileImportService
                             tran.Commit();
                             result = true;
                         }
-                        catch
+                        catch (Exception ex)
                         {
                             tran.Rollback();
-                            result = false;
+                            throw ex;
                         }
                     }
                 }
@@ -117,7 +126,7 @@ namespace PGtraining.FileImportService
 
         public static Order GetOrder(string orderNo)
         {
-            Order result = new Order();
+            Order result = null;
 
             using (var connection = new SqlConnection())
             using (var command = new SqlCommand())
@@ -132,7 +141,7 @@ namespace PGtraining.FileImportService
 
                     if (0 < orders.Count())
                     {
-                        result = orders.First() as Order;
+                        result = orders.First();
 
                         for (var i = 0; i < menu.Count(); i++)
                         {

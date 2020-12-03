@@ -7,97 +7,70 @@ namespace PGtraining.FileImportService
     {
         static public bool IsMatch(string target, string checkRule, int min = 0, int max = 0)
         {
-            var result = false;
-
-            if ((0 < min) && (string.IsNullOrEmpty(target)))
+            if (string.IsNullOrEmpty(target))
             {
-                return result;
+                return false;
             }
 
-            if (Regex.IsMatch(@target, @checkRule))
+            if (target.Length < min || max < target.Length)
             {
-                result = true;
+                return false;
             }
 
-            if (0 < max)
-            {
-                result = (target.Length <= max) ? true : false;
-            }
-            return result;
+            return Regex.IsMatch(@target, @checkRule);
         }
 
         /// <summary>
         /// targetが英数字のみか判定
         /// 文字数が指定されている場合は、min～max
-        /// 文字数が指定の文字数でジャストか以下か　true:ジャスト,false:以下OK
         /// </summary>
         /// <param name="target"></param>
-        /// <param name="just"></param>
+        /// <param name="min"></param>
         /// <param name="max"></param>
         /// <returns></returns>
         static public bool IsAlphaNumericOnly(string target, int min = 0, int max = 0)
         {
-            var result = false;
-
-            if ((0 < min) && (string.IsNullOrEmpty(target)))
+            if (string.IsNullOrEmpty(target))
             {
-                return result;
+                return false;
             }
 
-            if (Regex.IsMatch(@target, @"[^a-zA-z0-9]"))
+            if (target.Length < min || max < target.Length)
             {
-                return result;
+                return false;
             }
 
-            if (0 < max)
-            {
-                result = (target.Length <= max) ? true : false;
-            }
-
-            return result;
+            return Regex.IsMatch(@target, @"^([a-zA-Z0-9]*$)");
         }
 
         static public bool IsAlphaNumericPlus(string target, int min = 0, int max = 0)
         {
-            var result = false;
-
-            if ((0 < min) && (string.IsNullOrEmpty(target)))
+            if (string.IsNullOrEmpty(target))
             {
-                return result;
+                return false;
             }
 
-            if (Regex.IsMatch(@target, @"[^a-zA-z0-9_-]"))
+            if (target.Length < min || max < target.Length)
             {
-                return result;
+                return false;
             }
 
-            if (0 < max)
-            {
-                result = (target.Length <= max) ? true : false;
-            }
-
-            return result;
+            return Regex.IsMatch(@target, @"^([a-zA-z0-9_-]*$)");
         }
 
         static public bool IsKataKana(string target, int min = 0, int max = 0)
         {
-            var result = false;
-            if ((0 < min) && (string.IsNullOrEmpty(target)))
+            if (string.IsNullOrEmpty(target))
             {
-                return result;
+                return false;
             }
 
-            if (Regex.IsMatch(@target, @"^[\p{IsKatakana}\u31F0-\u31FF\u3099-\u309C]+$"))
+            if (target.Length < min || max < target.Length)
             {
-                return result;
+                return false;
             }
 
-            if (0 < max)
-            {
-                result = (target.Length <= max) ? true : false;
-            }
-
-            return result;
+            return true;
         }
 
         static public bool IsDateTime(string target, string format = "")

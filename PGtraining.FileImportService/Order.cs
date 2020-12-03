@@ -80,7 +80,7 @@ namespace PGtraining.FileImportService
             results.Add(this.CheckProcessingType());
             results.Add(this.CheckStudyDate());
 
-            var result = results.All(x => x = true);
+            var result = results.All(x => x == true);
             return result;
         }
 
@@ -279,32 +279,52 @@ namespace PGtraining.FileImportService
         {
             _logger.Info($"データベースにinsertします「{this.OrderNo}」");
 
+            var result = false;
             try
             {
-                var result = DbLib.InsertOrder(this);
-                return result;
+                result = DbLib.InsertOrder(this);
             }
             catch (Exception ex)
             {
                 _logger.Error($"データベースinsertに失敗しました:「{this.OrderNo}」{ex.ToString()}");
-                return false;
+                result = false;
             }
+
+            if (result)
+            {
+                _logger.Info($"データベースにinsertに成功しました：「{this.OrderNo}」");
+            }
+            else
+            {
+                _logger.Error($"データベースinsertに失敗しました:「{this.OrderNo}」");
+            }
+            return result;
         }
 
         public bool DeleteOrder()
         {
             _logger.Info($"データベースからdeleteします「{this.OrderNo}」");
 
+            var result = false;
             try
             {
-                var result = DbLib.DeleteOrder(this);
-                return result;
+                result = DbLib.DeleteOrder(this);
             }
             catch (Exception ex)
             {
                 _logger.Error($"データベースdeleteに失敗しました:「{this.OrderNo}」{ex.ToString()}");
-                return false;
+                result = false;
             }
+
+            if (result)
+            {
+                _logger.Info($"データベースからdeleteに成功しました：「{this.OrderNo}」");
+            }
+            else
+            {
+                _logger.Error($"データベースからdeleteに失敗しました:「{this.OrderNo}」");
+            }
+            return result;
         }
 
         public bool UpdateOrder()

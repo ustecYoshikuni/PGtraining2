@@ -8,12 +8,14 @@ namespace PGtraining.FileImportService
     {
         private static readonly log4net.ILog _logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        public void Import(string path)
+        public bool Import(string path)
         {
             FileInfo info = new FileInfo(AppDomain.CurrentDomain.SetupInformation.ConfigurationFile);
             log4net.Config.XmlConfigurator.Configure(log4net.LogManager.GetRepository(), info);
 
             _logger.Info($"Import Start {path}【読込開始】");
+
+            var result = true;
 
             StreamReader sr = new StreamReader(@path, System.Text.Encoding.GetEncoding("shift_jis"));
             {
@@ -50,9 +52,9 @@ namespace PGtraining.FileImportService
                     var doubleQuotesError = false;
                     for (var i = 0; i < values.Length; i++)
                     {
-                        var result = this.CheckDoubleQuotes(values[i]);
+                        var check = this.CheckDoubleQuotes(values[i]);
 
-                        if (result)
+                        if (check)
                         {
                             values[i] = values[i].Substring(1, values[i].Length - 2);
                         }
@@ -74,11 +76,11 @@ namespace PGtraining.FileImportService
                     var order = new Order(values);
                     if (order.OrderValidation())
                     {
-                        _logger.Info($"{row}行目読込完了");
+                        _logger.Info($"{row}行目{row - 1}検査目：読込問題なし");
                     }
                     else
                     {
-                        _logger.Error($"{row}行目読込エラー");
+                        _logger.Error($"{row}行目{row - 1}検査目：読込エラーあり");
                         continue;
                     }
 
@@ -87,17 +89,29 @@ namespace PGtraining.FileImportService
                     {
                         _logger.Info($"上書きします");
                         var update = order.UpdateOrder();
+
+                        if (update == false)
+                        {
+                            result = false;
+                        }
                     }
                     else
                     {
                         _logger.Info($"登録します");
                         var insert = order.InsertOrder();
+
+                        if (insert == false)
+                        {
+                            result = false;
+                        }
                     }
                 }
             }
             sr.Close();
 
             _logger.Info($"Import End {path}【読込終了】");
+
+            return result;
         }
 
         private bool CheckDoubleQuotes(string value)
