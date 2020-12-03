@@ -3,7 +3,7 @@
 namespace PGtraining.SimpleRis.Core.Entity
 {
     [Table("Menu")]
-    internal class Menu
+    public class Menu
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }

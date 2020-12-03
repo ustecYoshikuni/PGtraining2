@@ -18,6 +18,7 @@ namespace PGtraining.SimpleRis.Core.Entity
         public string PatientNameKana { get; set; }
         public string PatientBirth { get; set; }
         public string PatientSex { get; set; }
+        public int Status { get; set; }
 
         public Order()
         {

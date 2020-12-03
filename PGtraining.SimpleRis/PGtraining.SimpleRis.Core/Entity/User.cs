@@ -3,7 +3,7 @@
 namespace PGtraining.SimpleRis.Core.Entity
 {
     [Table("Users")]
-    internal class User
+    public class User
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
