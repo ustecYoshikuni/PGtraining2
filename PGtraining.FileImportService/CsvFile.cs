@@ -38,11 +38,13 @@ namespace PGtraining.FileImportService
                     if (values.Length < 12)
                     {
                         _logger.Error($"検査の項目数は12項目以上必要です。項目数が{ values.Length }です。");
+                        result = false;
                         continue;
                     }
                     if (values.Length % 2 != 0)
                     {
                         _logger.Error($"検査の項目数は偶数必要です。項目数が{ values.Length }です。");
+                        result = false;
                         continue;
                     }
 
@@ -61,12 +63,14 @@ namespace PGtraining.FileImportService
                         else
                         {
                             _logger.Error($"ダブルクォーテーションがありません。{ values[i] }です。");
+                            result = false;
                             doubleQuotesError = true;
                         }
                     }
 
                     if (doubleQuotesError)
                     {
+                        result = false;
                         continue;
                     }
 
@@ -81,6 +85,7 @@ namespace PGtraining.FileImportService
                     else
                     {
                         _logger.Error($"{row}行目{row - 1}検査目：読込エラーあり");
+                        result = false;
                         continue;
                     }
 
